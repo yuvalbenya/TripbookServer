@@ -54,6 +54,20 @@ const getPostByOwner = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
+const getPostByTrip = async (req, res, next) => {
+    try {
+        const trip_id = req.params.trip_id;
+        // console.log(user_id)
+        const posts = await firestore.collection('Posts').where('trip_id', '==', trip_id).get();
+        var array = [];
+        posts.forEach((doc) => {
+            array.push(doc.data());
+        });
+        res.status(200).send(array);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 const updatePost = async (req, res, next) => {
     try {
         const id = req.params.id;
@@ -83,5 +97,6 @@ module.exports = {
     getPost,
     getPostByOwner,
     updatePost,
-    deletePost
+    deletePost,
+    getPostByTrip
 }
