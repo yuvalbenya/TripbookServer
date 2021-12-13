@@ -3,6 +3,7 @@ const {addPost, getPost, updatePost, deletePost, getPostByOwner} = require('../c
 
 const router = express.Router();
 
+
 router.post('/post',addPost);
 router.get('/post/:id',getPost);
 router.get('/postByUserID/:user_id',getPostByOwner);

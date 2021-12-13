@@ -1,0 +1,96 @@
+**********************************************Users*******************************************************
+
+POST http://localhost:8080/api/user -
+adding a new user in a json format in the body example:
+{
+    "first_name": "Omer",
+    "last_name": "Shalom",
+    "email": "omer2041@gmail.com",
+    "password": "123456",
+    "passRecoverAnswer": "os",
+    "admin": "true"
+}
+GET http://localhost:8080/api/user/lIzg6eEUtvBbEdmgR73v -
+getting user information in json by its id (url last parameter)
+
+PUT http://localhost:8080/api/user/Gf4EHaovM5IlAbEnuj6g -
+updating user information with a json (passed in body) by a user id (url last parameter) of the wanted fields to be updated (dont have to include every field in user) example:
+{
+    "first_name":"tal",
+    "last_name":"schreiber"
+}   
+DELETE http://localhost:8080/api/user/tHjTH56nw4NvPT4TD3aM -
+deleting a user by its id (url last parameter)
+
+GET http://localhost:8080/api/user -
+getting user authentication and his information in a json required to send a json in body containing only 2 fields of email and password example:
+{
+    "email":"omer2041@gmail.com",
+    "password":123456
+}
+
+**********************************************Trips*******************************************************
+
+POST http://localhost:8080/api/Trip -
+adding a new trip in a json format in the body example:
+{
+    "user_id": "Gf4EHaovM5IlAbEnuj6g",
+    "isWaiting":true,
+    "adminMessage": "No new admin messages",
+    "tripName": "purple",
+    "category": ["isRelax", "isDynamic"],
+    "price" : 50,
+    "location" : "kfar saba"
+}
+GET http://localhost:8080/api/tripID/tUdV3DV1ubwkHx8eaqzS -
+getting trip information in json by its id (url last parameter)
+
+PUT http://localhost:8080/api/trip/tUdV3DV1ubwkHx8eaqzS -
+updating trip information with a json (passed in body) by a trip id (url last parameter) of the wanted fields to be updated (dont have to include every field in user) example:
+{
+    "tripName": "beer with schreiber",
+    "adminMessage":""
+   
+}
+DELETE http://localhost:8080/api/trip/DcsiNMd8zOABI8nrY35J -
+deleting a trip by its id (url last parameter)
+
+GET http://localhost:8080/api/tripOwner/tUdV3DV1ubwkHx8eaqzS - 
+getting trips associated with a given user_id (url last parameter) all in array of jsons (each json containing a trip information) 
+
+GET http://localhost:9090/api/tripIsWaiting -
+getting all trips that are waiting for admin confirmation in array of jsons
+
+GET http://localhost:8080/api/tripByCategory -
+getting all trips with a given category (for the search) must pass a json in body:
+{
+    "category": ["isRelax", "isDynamic"], => must appear in json even if its empty
+    "price" : 50, => optional field
+    "location" : "kfar saba" => optional field
+}
+
+
+**********************************************Posts*******************************************************
+
+POST http://localhost:8080/api/post -
+adding a new post in a json format in the body example:
+{
+    "trip_id": "tUdV3DV1ubwkHx8eaqzS",  
+    "user_id": "Gf4EHaovM5IlAbEnuj6g",
+    "title":"fun and relaxing",
+    "description":"the weed was very good"
+}
+GET http://localhost:8080/api/post/K74rKCvrTYK14XWIahbv -
+getting post information in json by its id (url last parameter)
+
+PUT http://localhost:8080/api/post/K74rKCvrTYK14XWIahbv -
+updating post information with the wanted field to change in a json (passed in body) by a post id (url last parameter) of the wanted fields to be updated (dont have to include every field in user) example:
+{
+    "title":"one of the best beers in town",
+    "description":"really good IPA and red queen beers"
+}
+DELETE http://localhost:8080/api/post/mPh6oakOG9BFFAQQPJyg -
+deleting a trip by its id (url last parameter)
+
+GET http://localhost:8080/api/postByUserID/Gf4EHaovM5IlAbEnuj6g -
+getting all posts of a given user_id (url last parameter) in array of jsons
