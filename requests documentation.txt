@@ -94,3 +94,8 @@ deleting a trip by its id (url last parameter)
 
 GET http://localhost:8080/api/postByUserID/Gf4EHaovM5IlAbEnuj6g -
 getting all posts of a given user_id (url last parameter) in array of jsons
+
+GET http://localhost:8080/api/postByTripID/tUdV3DV1ubwkHx8eaqzS -
+getting all posts of a given trip_id (url last parameter) in array of jsons
+
+
