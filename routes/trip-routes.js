@@ -1,12 +1,16 @@
 const express = require('express');
-const {addTrip, getTrip, updateTrip, deleteTrip} = require('../controllers/tripController');
+const {addTrip, getTrip, updateTrip, deleteTrip, getTripsByOwner, getIsWaiting, getByCategory} = require('../controllers/tripController');
 
 const router = express.Router();
 
 router.post('/trip',addTrip);
-router.get('/trip/:id',getTrip);
+router.get('/tripID/:id',getTrip); //by id
+router.get('/tripOwner/:owner',getTripsByOwner);
+router.get('/tripIsWaiting/',getIsWaiting);
+router.get('/tripByCategory/',getByCategory);
 router.put('/trip/:id', updateTrip);
 router.delete('/trip/:id', deleteTrip);
+
 module.exports = {
     routes: router
 }

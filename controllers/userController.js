@@ -8,15 +8,49 @@ const firestore = firebase.firestore();
 
 const addUser = async(req,res,next) => {
     try{
-        const data = req.body;
-        await firestore.collection('Users').doc().set(data);
-        res.status(200).send('user has been saved');
+        const { first_name, last_name, email, password, passRecoverAnswer, admin } = req.body;
+        const doc = firestore.collection("Users").doc();
+        let newUser = new User(
+            doc.id,
+            first_name,
+            last_name,
+            email,
+            password,
+            passRecoverAnswer,
+            admin
+        );
+        newUser = JSON.parse(JSON.stringify(newUser));
+        await doc.set(newUser);
+        res.status(200).send(newUser);
     }
     catch (error) {
         res.status(400).send(error.message);
     }
 }
-// 
+//get id of a user with a given email and password
+const getAuth = async (req, res, next) => {
+    try{
+        const email = req.body.email;
+        const password = req.body.pass;
+        // const users = await firestore.collection('Users');
+        const emails =  await firestore.collection('Users').where('email','==', email).get();
+        var user = -1;
+        emails.forEach((doc) => {
+            if(doc.data().pass == password){
+                user = doc;
+            }
+        });
+        if(!user == -1){
+            res.status(404).send('email or password is wrong');
+        }
+        else{
+            res.status(200).send(user.data);
+        }
+    }
+    catch(error){
+        res.status(400).send(error.message);
+    }
+}
 const getUser = async (req, res, next) => {
     try {
         const id = req.params.id;
@@ -37,7 +71,7 @@ const updateUser = async (req, res, next) => {
         const data = req.body;
         const user =  await firestore.collection('Users').doc(id);
         await user.update(data);
-        res.send('User record updated successfuly');        
+        res.status(200).send(user.id);        
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -57,5 +91,6 @@ module.exports = {
     addUser,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getAuth
 }
