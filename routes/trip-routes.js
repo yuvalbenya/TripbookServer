@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/trip',addTrip);
 router.get('/tripID/:id',getTrip); //by id
-router.get('/tripOwner/:owner',getTripsByOwner);
+router.get('/tripOwner/:user_id',getTripsByOwner);
 router.get('/tripIsWaiting/',getIsWaiting);
 router.get('/tripByCategory/',getByCategory);
 router.put('/trip/:id', updateTrip);
