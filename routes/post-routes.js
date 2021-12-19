@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.post('/post',addPost);
 router.get('/post/:id',getPost);
-router.get('/postByUserID/:user_id',getPostByOwner);
-router.get('/postByTripID/:trip_id',getPostByTrip);
+router.get('/postsByUserID/:user_id',getPostByOwner);
+router.get('/postsByTripID/:trip_id',getPostByTrip);
 router.put('/post/:id', updatePost);
 router.delete('/post/:id', deletePost);
 module.exports = {

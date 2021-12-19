@@ -30,21 +30,22 @@ const addUser = async(req,res,next) => {
 //get id of a user with a given email and password
 const getAuth = async (req, res, next) => {
     try{
-        const email = req.body.email;
-        const password = req.body.pass;
+        const email = req.params.email;
+        const password = req.params.password;
         // const users = await firestore.collection('Users');
         const emails =  await firestore.collection('Users').where('email','==', email).get();
         var user = -1;
         emails.forEach((doc) => {
-            if(doc.data().pass == password){
+            if(doc.data().password === password){
                 user = doc;
             }
         });
-        if(!user == -1){
-            res.status(404).send('email or password is wrong');
+
+        if(user === -1){
+            res.status(404).send({message: 'email or password is wrong'});
         }
         else{
-            res.status(200).send(user.data);
+            res.status(200).send(user.data());
         }
     }
     catch(error){
