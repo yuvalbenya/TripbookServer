@@ -3,12 +3,12 @@ const {addUser, getUser, updateUser, deleteUser, getAuth, recoverPass} = require
 
 const router = express.Router();
 
-router.get('/authUser/:email',getAuth);
+router.put('/authUser/',getAuth);
 router.post('/user',addUser);
 router.get('/user/:id',getUser);
 router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
-router.get('/user/recover/:email&:answer',recoverPass);
+router.put('/user/recoverUser',recoverPass);
 module.exports = {
     routes: router
 }

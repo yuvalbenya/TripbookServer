@@ -30,8 +30,8 @@ const addUser = async(req,res,next) => {
 //get id of a user with a given email and password
 const getAuth = async (req, res, next) => {
     try{
-        const email = req.params.email;
-        const password = req.params.password;
+        const email = req.body.email;
+        const password = req.body.password;
         // const users = await firestore.collection('Users');
         const emails =  await firestore.collection('Users').where('email','==', email).get();
         var user = -1;
@@ -89,8 +89,8 @@ const deleteUser = async (req, res, next) => {
 }
 const recoverPass = async(req,res,next) =>{
     try{
-        const email = req.params.email;
-        const asnwer = req.params.answer;
+        const email = req.body.email;
+        const answer = req.body.passRecoverAnswer;
         // const users = await firestore.collection('Users');
         const emails =  await firestore.collection('Users').where('email','==', email).get();
         var user = -1;
