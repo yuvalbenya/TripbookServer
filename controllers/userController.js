@@ -51,7 +51,7 @@ const getAuth = async (req, res, next) => {
     catch(error){
         res.status(400).send(error.message);
     }
-}
+} 
 const getUser = async (req, res, next) => {
     try {
         const id = req.params.id;
@@ -88,10 +88,39 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
+const recoverPass = async(req,res,next) =>{
+    try{
+        const email = req.params.email;
+        const asnwer = req.params.answer;
+        // const users = await firestore.collection('Users');
+        const emails =  await firestore.collection('Users').where('email','==', email).get();
+        var user = -1;
+        emails.forEach((doc) => {
+            if(doc.data().passRecoverAnswer === answer){
+                user = doc;
+            }
+        });
+
+        if(user === -1){
+            res.status(404).send({message: 'email or answer is wrong'});
+        }
+        else{
+            res.status(200).send(user.data());
+        }
+    }
+    catch(error){
+        res.status(400).send(error.message);
+    }
+}
+
+
+
+
 module.exports = {
     addUser,
     getUser,
     updateUser,
     deleteUser,
-    getAuth
+    getAuth,
+    recoverPass
 }

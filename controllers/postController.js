@@ -25,7 +25,6 @@ const addPost = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-
 const getPost = async (req, res, next) => {
     try {
         const id = req.params.id;

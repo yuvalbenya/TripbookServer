@@ -37,7 +37,6 @@ const addTrip = async (req, res, next) => {
     res.status(400).send(error.message);
   }
 };
-
 const getTrip = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -51,7 +50,6 @@ const getTrip = async (req, res, next) => {
     res.status(400).send(error.message);
   }
 };
-
 const updateTrip = async (req, res, next) => {
   try {
     const id = req.params.id;
