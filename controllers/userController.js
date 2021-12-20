@@ -87,7 +87,6 @@ const deleteUser = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-
 const recoverPass = async(req,res,next) =>{
     try{
         const email = req.params.email;
@@ -112,7 +111,6 @@ const recoverPass = async(req,res,next) =>{
         res.status(400).send(error.message);
     }
 }
-
 
 
 

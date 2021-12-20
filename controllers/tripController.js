@@ -129,11 +129,19 @@ const getByCategory = async (req, res, next) => {
         .where("isWaiting", "==", false)
         .get();
     } else {
+      if(categories != []){
       trips = await firestore
         .collection("Trips")
         .where("category", "array-contains-any", categories)
         .where("isWaiting", "==", false)
         .get();
+      }else{
+        trips = await firestore
+        .collection("Trips")
+        .where("isWaiting","==", false)
+        .get();
+      }
+
     }
     const tripsArray = [];
     trips.forEach((doc) => {
