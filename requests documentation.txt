@@ -22,13 +22,19 @@ updating user information with a json (passed in body) by a user id (url last pa
 DELETE http://localhost:8080/api/user/tHjTH56nw4NvPT4TD3aM -
 deleting a user by its id (url last parameter)
 
-GET http://localhost:8080/api/user -
+PUT http://localhost:8080/api/authUser -
 getting user authentication and his information in a json required to send a json in body containing only 2 fields of email and password example:
 {
     "email":"omer2041@gmail.com",
     "password":123456
 }
 
+PUT http://localhost:8080/api/recoverUser -
+getting user password and his information in a json required to send a json in body containing only 2 fields of email and password example:
+{
+    "email":"omer2041@gmail.com",
+    "passRecoverAnswer": "os"
+}
 **********************************************Trips*******************************************************
 
 POST http://localhost:8080/api/Trip -

@@ -101,7 +101,7 @@ const recoverPass = async(req,res,next) =>{
         });
 
         if(user === -1){
-            res.status(404).send({message: 'email or answer is wrong'});
+            res.status(404).send({"message": 'email or answer is wrong'});
         }
         else{
             res.status(200).send(user.data());

@@ -8,7 +8,7 @@ router.post('/user',addUser);
 router.get('/user/:id',getUser);
 router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
-router.put('/user/recoverUser',recoverPass);
+router.put('/recoverUser',recoverPass);
 module.exports = {
     routes: router
 }
