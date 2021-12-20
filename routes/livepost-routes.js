@@ -1,15 +1,15 @@
 const express = require('express');
-const {addPost, getPost, updatePost, deletePost, getPostByOwner, getPostByTrip} = require('../controllers/postController');
+const {addLivePost, getLivePost, updateLivePost, deleteLivePost, getLivePostByOwner, getLivePostByTrip} = require('../controllers/livepostController');
 
 const router = express.Router();
 
 
-router.post('/livepost',addPost);
-router.get('/livepost/:id',getPost);
-router.get('/livepostsByUserID/:user_id',getPostByOwner);
-router.get('/livepostsByTripID/:trip_id',getPostByTrip);
-router.put('/livepost/:id', updatePost);
-router.delete('/livepost/:id', deletePost);
+router.post('/livepost',addLivePost);
+router.get('/livepost/:id',getLivePost);
+router.get('/livepostsByUserID/:user_id',getLivePostByOwner);
+router.get('/livepostsByTripID/:trip_id',getLivePostByTrip);
+router.put('/livepost/:id', updateLivePost);
+router.delete('/livepost/:id', deleteLivePost);
 module.exports = {
     routes: router
 }
