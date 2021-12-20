@@ -108,41 +108,72 @@ const getByCategory = async (req, res, next) => {
     const categories = req.body.category;
     var trips;
     if ("location" in json && "price" in json) {
-      trips = await firestore
-        .collection("Trips")
-        .where("price", "<=", req.body.price)
-        .where("location", "==", req.body.location)
-        .where("category", "array-contains-any", categories)
-        .where("isWaiting", "==", false)
-        .get();
-    } else if ("location" in json) {
-      trips = await firestore
-        .collection("Trips")
-        .where("location", "==", req.body.location)
-        .where("category", "array-contains-any", categories)
-        .where("isWaiting", "==", false)
-        .get();
-    } else if ("price" in json) {
-      trips = await firestore
-        .collection("Trips")
-        .where("price", "<=", req.body.price)
-        .where("category", "array-contains-any", categories)
-        .where("isWaiting", "==", false)
-        .get();
-    } else {
-      if(categories.length > 0){
-        console.log(categories === []);
-        
-      trips = await firestore
-        .collection("Trips")
-        .where("category", "array-contains-any", categories)
-        .where("isWaiting", "==", false)
-        .get();
-      }else{
+      if (categories.length > 0) {
         trips = await firestore
-        .collection("Trips")
-        .where("isWaiting","==", false)
-        .get();
+          .collection("Trips")
+          .where("price", "<=", req.body.price)
+          .where("location", "==", req.body.location)
+          .where("category", "array-contains-any", categories)
+          .where("isWaiting", "==", false)
+          .get();
+      }
+      else {
+        trips = await firestore
+          .collection("Trips")
+          .where("price", "<=", req.body.price)
+          .where("location", "==", req.body.location)
+          .where("isWaiting", "==", false)
+          .get();
+      }
+    }
+    else if ("location" in json) {
+      if (categories.length > 0) {
+        trips = await firestore
+          .collection("Trips")
+          .where("location", "==", req.body.location)
+          .where("category", "array-contains-any", categories)
+          .where("isWaiting", "==", false)
+          .get();
+      }
+      else {
+        trips = await firestore
+          .collection("Trips")
+          .where("location", "==", req.body.location)
+          .where("isWaiting", "==", false)
+          .get();
+      }
+    }
+    else if ("price" in json) {
+      if (categories.length > 0) {
+        trips = await firestore
+          .collection("Trips")
+          .where("price", "<=", req.body.price)
+          .where("category", "array-contains-any", categories)
+          .where("isWaiting", "==", false)
+          .get();
+      }
+      else {
+        trips = await firestore
+          .collection("Trips")
+          .where("price", "<=", req.body.price)
+          .where("isWaiting", "==", false)
+          .get();
+      }
+    }
+    else {
+      if (categories.length > 0) {
+        console.log(categories === []);
+
+        trips = await firestore
+          .collection("Trips")
+          .where("category", "array-contains-any", categories)
+          .where("isWaiting", "==", false)
+          .get();
+      } else {
+        trips = await firestore
+          .collection("Trips")
+          .where("isWaiting", "==", false)
+          .get();
       }
 
     }

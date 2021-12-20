@@ -7,4 +7,5 @@ class Post {
         this.description = description;
     }
 }
+
 module.exports = Post

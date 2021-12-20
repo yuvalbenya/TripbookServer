@@ -3,7 +3,7 @@ const {addUser, getUser, updateUser, deleteUser, getAuth, recoverPass} = require
 
 const router = express.Router();
 
-router.get('/user/auth/:email&:password',getAuth);
+router.get('/authUser/:email',getAuth);
 router.post('/user',addUser);
 router.get('/user/:id',getUser);
 router.put('/user/:id', updateUser);
