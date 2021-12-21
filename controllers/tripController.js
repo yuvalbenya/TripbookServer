@@ -1,7 +1,6 @@
 "use strict";
 
 const { json } = require("body-parser");
-const db = require("../db");
 const firebase = require("../db");
 const Trip = require("../models/trip");
 const firestore = firebase.firestore();
