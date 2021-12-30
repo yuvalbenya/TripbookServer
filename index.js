@@ -6,6 +6,7 @@ const config = require('./config');
 const userRoutes = require('./routes/user-routes');
 const tripRoutes = require('./routes/trip-routes');
 const postRoutes = require('./routes/post-routes');
+const livepostRoutes = require('./routes/livepost-routes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 app.use('/api',userRoutes.routes);
 app.use('/api',tripRoutes.routes);
 app.use('/api',postRoutes.routes);
+app.use('/api',livepostRoutes.routes);
 
 
-app.listen(config.port, () => console.log('App is listening on url http://localhost' + config.port));
+app.listen(config.port, () => console.log('App is listening on url http://localhost:' + config.port));

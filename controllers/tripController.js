@@ -1,7 +1,6 @@
 "use strict";
 
 const { json } = require("body-parser");
-const db = require("../db");
 const firebase = require("../db");
 const Trip = require("../models/trip");
 const firestore = firebase.firestore();
@@ -104,7 +103,6 @@ const getIsWaiting = async (req, res, next) => {
 const getByCategory = async (req, res, next) => {
   try {
     const json = req.body;
-    console.log(json);
     const categories = req.body.category;
     var trips;
     if ("location" in json && "price" in json) {
@@ -162,7 +160,7 @@ const getByCategory = async (req, res, next) => {
     }
     else {
       if (categories.length > 0) {
-        console.log(categories === []);
+        // console.log(categories === []);
 
         trips = await firestore
           .collection("Trips")
