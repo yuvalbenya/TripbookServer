@@ -104,8 +104,10 @@ const getByCategory = async (req, res, next) => {
   try {
     const json = req.body;
     const categories = req.body.category;
+    const price = req.body.price;
+    const location = req.body.location;
     var trips;
-    if ("location" in json && "price" in json) {
+    if (location != "" && price != 0) {
       if (categories.length > 0) {
         trips = await firestore
           .collection("Trips")
@@ -124,7 +126,7 @@ const getByCategory = async (req, res, next) => {
           .get();
       }
     }
-    else if ("location" in json) {
+    else if (location != "") {
       if (categories.length > 0) {
         trips = await firestore
           .collection("Trips")
@@ -141,7 +143,7 @@ const getByCategory = async (req, res, next) => {
           .get();
       }
     }
-    else if ("price" in json) {
+    else if (price != 0) {
       if (categories.length > 0) {
         trips = await firestore
           .collection("Trips")
