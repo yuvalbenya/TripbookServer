@@ -107,7 +107,6 @@ const getByCategory = async (req, res, next) => {
     const price = req.body.price;
     const location = req.body.location;
     var trips;
-    console.log(price);
     if (location != "" && price != -1) {
       if (categories.length > 0) {
         trips = await firestore
@@ -163,8 +162,6 @@ const getByCategory = async (req, res, next) => {
     }
     else {
       if (categories.length > 0) {
-        // console.log(categories === []);
-
         trips = await firestore
           .collection("Trips")
           .where("category", "array-contains-any", categories)
