@@ -22,5 +22,5 @@ Server and data using FireBase
   ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome.<br />
-Feel free to check our [issues page](https://github.com/TalSchreiber95/TripBook/issues).
+Feel free to check our [issues page](https://github.com/yuvalbenya/TripbookServer/issues).
 
